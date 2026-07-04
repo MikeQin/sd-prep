@@ -29,6 +29,7 @@ export interface RepSummary {
   name: string;
   vertical: string;
   call_count: number;
+  scored_call_count: number;
   average_score: number;
 }
 

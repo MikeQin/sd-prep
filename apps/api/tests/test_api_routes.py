@@ -52,6 +52,32 @@ def test_list_reps_returns_seeded_rep_with_average_score():
     assert len(reps) == 1
     assert reps[0]["id"] == "rep-01"
     assert reps[0]["call_count"] == 2
+    assert reps[0]["scored_call_count"] == 2
+
+
+def test_list_reps_reports_call_count_and_scored_call_count_separately():
+    db = TestSession()
+    db.add(
+        CallDB(
+            id="hs-no-score-2",
+            rep_id="rep-01",
+            customer_name="Unscored Customer 2",
+            vertical="home_services",
+            date="2026-01-02",
+            duration_seconds=1.0,
+            turns=[],
+        )
+    )
+    db.commit()
+    db.close()
+
+    response = client.get("/api/reps")
+    rep = next(r for r in response.json() if r["id"] == "rep-01")
+
+    # call_count includes the new scoreless call; scored_call_count doesn't,
+    # and average_score is only computed over scored calls.
+    assert rep["call_count"] == 3
+    assert rep["scored_call_count"] == 2
 
 
 def test_get_call_detail_returns_transcript_and_score():

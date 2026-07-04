@@ -43,6 +43,11 @@ class RepSummaryOut(BaseModel):
     name: str
     vertical: str
     call_count: int
+    # Separate from call_count so a caller can tell when average_score is
+    # computed over fewer calls than call_count reports (e.g. a call whose
+    # scoring hasn't completed yet), instead of the two numbers silently
+    # resting on different denominators.
+    scored_call_count: int
     average_score: float
 
 

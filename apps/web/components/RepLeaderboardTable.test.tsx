@@ -9,8 +9,8 @@ describe("RepLeaderboardTable", () => {
     render(
       <RepLeaderboardTable
         reps={[
-          { id: "rep-01", name: "Jordan Blake", vertical: "home_services", call_count: 4, average_score: 70 },
-          { id: "rep-02", name: "Casey Nguyen", vertical: "home_services", call_count: 5, average_score: 90 },
+          { id: "rep-01", name: "Jordan Blake", vertical: "home_services", call_count: 4, scored_call_count: 4, average_score: 70 },
+          { id: "rep-02", name: "Casey Nguyen", vertical: "home_services", call_count: 5, scored_call_count: 5, average_score: 90 },
         ]}
       />
     );
@@ -24,7 +24,7 @@ describe("RepLeaderboardTable", () => {
     render(
       <RepLeaderboardTable
         reps={[
-          { id: "rep-01", name: "Jordan Blake", vertical: "home_services", call_count: 4, average_score: 70 },
+          { id: "rep-01", name: "Jordan Blake", vertical: "home_services", call_count: 4, scored_call_count: 4, average_score: 70 },
         ]}
       />
     );

@@ -34,7 +34,10 @@ def list_reps(db: Session = Depends(get_db)):
         scores = [c.score.overall_score for c in rep.calls if c.score]
         avg = round(sum(scores) / len(scores), 1) if scores else 0.0
         out.append(
-            RepSummaryOut(id=rep.id, name=rep.name, vertical=rep.vertical, call_count=len(rep.calls), average_score=avg)
+            RepSummaryOut(
+                id=rep.id, name=rep.name, vertical=rep.vertical,
+                call_count=len(rep.calls), scored_call_count=len(scores), average_score=avg,
+            )
         )
     return out
 
