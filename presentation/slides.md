@@ -19,9 +19,10 @@ call into an objective scorecard, at scale.
 
 ## Product Walkthrough
 
-1. **Leaderboard** - reps ranked by average call score
+1. **Leaderboard** - reps ranked by average call score, linking to each rep
 2. **Call Detail** - transcript and scorecard side by side
-3. **Rep Profile** - score trend over time
+3. **Rep Profile** - score trend over time, linking to each call
+4. **All Calls** - browse every call across reps
 
 *(live demo here)*
 
@@ -56,11 +57,36 @@ call into an objective scorecard, at scale.
 
 ---
 
+## Independent Review & Hardening
+
+Built with AI assistance, then **independently reviewed** rather than
+trusted at face value - the implementing agent's own "all green" self-review
+missed all of this:
+
+- 8-angle automated review (correctness, cleanup, efficiency, altitude,
+  conventions) + manual verification -> **20 confirmed findings**
+- Notable catches: a scoring value that serialized as invalid JSON, zero
+  navigation links anywhere in the frontend, keyword false-positives in the
+  core scoring signal, N+1 queries, a silent scorer-fallback with no record
+  of which backend actually scored a call
+- Every fix went through the same TDD cycle as the original build: failing
+  test -> fix -> passing test -> commit
+- One regression test (scorer vs. transcript generator wording) caught a
+  **real pre-existing bug**, not something the review itself introduced
+
+*Talking point: reviewing AI-generated code is a skill in its own right -
+passing tests and a clean type-check are necessary, not sufficient.*
+
+---
+
 ## Known Limitations
 
 - Transcripts are pre-provided text - no ASR/audio pipeline
 - No auth/multi-tenancy - single manager view
 - Keyword-based scoring misses nuance an LLM or trained model would catch
+- No `scorer_version` - a scoring-logic fix doesn't retroactively apply to
+  already-scored calls without a backfill job
+- No pagination on `/api/reps` / `/api/calls` - fine at demo scale only
 
 ---
 
@@ -69,9 +95,15 @@ call into an objective scorecard, at scale.
 ![bg right:40% fit](../design/diagrams/production-architecture.png)
 
 - Audio -> ASR -> queue -> autoscaled scoring workers
-- Postgres with read replicas, Redis cache for dashboard reads
-- Multi-tenant auth/RBAC, encryption in transit/at rest
-- Stateless API tier behind a load balancer, multi-AZ for HA
+  (**at-least-once delivery - workers must upsert by `call_id`, idempotently**)
+- Postgres with read replicas, Redis cache (**cache-aside + write-time
+  invalidation**, not just TTL) for dashboard reads
+- Read replicas mean a brief replication-lag window before a newly-scored
+  call is visible - acceptable for a coaching dashboard, not a real-time system
+- Multi-tenant auth/RBAC, encryption in transit/at rest, **and a defined
+  transcript retention/deletion policy** - this data is real customer PII
+- Stateless API tier behind a load balancer, multi-AZ for HA, paginated
+  list endpoints
 - Graceful degradation: LLM scorer path failure falls back to rule-based
 
 ---
@@ -83,6 +115,9 @@ call into an objective scorecard, at scale.
 3. Production LLM scorer with human-in-the-loop review
 4. Real-time ingestion and alerting
 5. CRM integrations
+6. `scorer_version` field + backfill job for retroactive scoring fixes
+7. Pagination on list endpoints before scaling past the demo dataset
+8. Transcript retention/deletion policy before storing real customer data
 
 ---
 
