@@ -69,3 +69,19 @@ def test_talk_listen_ratio_flags_rep_dominating_conversation():
 
     assert result.talk_listen_ratio > 2.5
     assert "rep_talked_too_much" in result.flags
+
+
+def test_talk_listen_ratio_is_finite_when_customer_never_speaks():
+    call = CallTranscript(
+        call_id="hs-0004",
+        rep_id="rep-02",
+        vertical="home_services",
+        turns=[
+            _turn("rep", "Just leaving a voicemail since you didn't pick up.", 0, 5),
+        ],
+    )
+
+    result = RuleBasedScorer().score(call)
+
+    assert result.talk_listen_ratio == 999.0
+    assert "rep_talked_too_much" in result.flags

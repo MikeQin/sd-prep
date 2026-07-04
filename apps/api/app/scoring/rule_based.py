@@ -5,6 +5,11 @@ from app.scoring.models import CallTranscript, ScoreResult
 OBJECTION_PHRASES = ["too expensive", "talk to my spouse", "shop around", "think about it"]
 HANDLING_PHRASES = ["financing", "break down what's included", "value", "understand"]
 PRICING_PHRASES = ["price", "cost", "total", "$", "/month"]
+
+# Cap rather than use float('inf') for zero-customer-talk-time calls: `inf`
+# serializes as the non-standard JSON token `Infinity`, which breaks JSON
+# parsers on the receiving end (e.g. the frontend's fetch().json()).
+MAX_TALK_LISTEN_RATIO = 999.0
 NEXT_STEP_PHRASES = ["schedule", "follow up", "send over", "paperwork", "next week", "move forward"]
 NEXT_STEP_COMMIT_PHRASES = ["sounds good", "let's do it", "let's move forward", "sure, send it", "yes"]
 POSITIVE_WORDS = ["great", "good", "excited", "sounds good", "yes", "sure"]
@@ -22,7 +27,7 @@ class RuleBasedScorer:
     def score(self, call: CallTranscript) -> ScoreResult:
         rep_time = sum(t.duration for t in call.turns if t.speaker == "rep")
         customer_time = sum(t.duration for t in call.turns if t.speaker == "customer")
-        talk_listen_ratio = round(rep_time / customer_time, 2) if customer_time else float("inf")
+        talk_listen_ratio = round(rep_time / customer_time, 2) if customer_time else MAX_TALK_LISTEN_RATIO
 
         customer_turns = [t.text for t in call.turns if t.speaker == "customer"]
         rep_turns = [t.text for t in call.turns if t.speaker == "rep"]
