@@ -2,6 +2,35 @@
 
 All notable changes to this rehearsal repo are documented here.
 
+## [0.1.2] - 2026-07-04
+
+### Fixed
+- **`seed_database` could crash on startup against the real dataset** with
+  `UNIQUE constraint failed: reps.id`. It checked `db.get(RepDB, rep_id) is
+  None` to decide whether to add a rep, but `app.db.SessionLocal` has
+  `autoflush=False`, so a rep added earlier in the same seeding pass wasn't
+  visible to that check until the session flushed - every transcript after
+  a rep's first one added a colliding duplicate row. Since every real rep
+  has multiple calls, this broke seeding entirely outside of tests. Fixed
+  by tracking already-added rep ids in a local set instead of re-querying
+  mid-loop. The test suite had been silently missing this because its own
+  session factories didn't match production's `autoflush=False` config -
+  fixed those too so they actually exercise the real code path.
+- `@app.on_event("startup")` migrated to FastAPI's `lifespan` context
+  manager (`on_event` is deprecated).
+- `ScoreOut`'s class-based `Config` migrated to `ConfigDict` (Pydantic
+  v1-style config is deprecated in Pydantic v2).
+- `httpx` swapped for `httpx2` in `apps/api/requirements.txt` -
+  `starlette.testclient` now prefers `httpx2` and warns when falling back
+  to `httpx`.
+
+### Added
+- A "Running the App" section in `README.md` (solution branch): backend/
+  frontend setup and dev server commands, environment variables
+  (`SCORER_BACKEND`, `LLM_API_KEY`, `NEXT_PUBLIC_API_BASE_URL`), resetting
+  the SQLite db, and running tests. Verified by actually booting both
+  servers end-to-end against the documented commands.
+
 ## [0.1.1] - 2026-07-04
 
 ### Fixed
