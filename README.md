@@ -45,3 +45,53 @@ implementation plan this repo was built from.
 - `presentation/slides.md` - a reference Marp deck
 
 Try `docs/03-rehearsal-checklist.md` for a full timed dry run.
+
+## Running the App
+
+Requires **Python 3.11+** and **Node.js 20+**. Start the backend first -
+the frontend expects it on port 8000.
+
+### Backend (`apps/api`)
+
+```bash
+cd apps/api
+pip install -r requirements.txt
+python -m uvicorn app.main:app --reload --port 8000
+```
+
+Seeds automatically from `data/transcripts/*.json` on first startup into a
+local `coaching_insights.db` SQLite file (gitignored). Verify with
+`curl http://localhost:8000/api/reps` - should return 6 reps.
+
+### Frontend (`apps/web`)
+
+```bash
+cd apps/web
+npm install
+npm run dev
+```
+
+Open `http://localhost:3000`.
+
+### Environment Variables (optional)
+
+| Variable | Where | Default | Purpose |
+|---|---|---|---|
+| `SCORER_BACKEND` | backend | `rule` | `rule` or `llm` - selects the scoring implementation via `get_scorer()`. `llm` currently falls back to rule-based scoring unless `LLM_API_KEY` is set, since `LLMScorer` is a structurally-complete stub, not wired to a live provider (see `docs/02-requirements.md`). |
+| `LLM_API_KEY` | backend | unset | Only read by the `LLMScorer` stub; has no effect on scoring since it's never wired to a real API call. |
+| `NEXT_PUBLIC_API_BASE_URL` | frontend | `http://localhost:8000` | Where the frontend fetches the API from. |
+
+### Resetting the Database
+
+Seeding is idempotent per-call (new transcripts added to `data/transcripts/`
+get picked up on restart, already-seeded ones don't get re-inserted). To
+start over from scratch instead, stop the backend and delete
+`apps/api/coaching_insights.db`, then restart it.
+
+### Running Tests
+
+```bash
+cd apps/api && python -m pytest tests -v   # backend: 31 tests
+cd apps/web && npm test                    # frontend: 9 tests
+cd apps/web && npx tsc --noEmit            # frontend: type-check
+```
