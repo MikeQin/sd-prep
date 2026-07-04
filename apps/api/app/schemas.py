@@ -1,9 +1,11 @@
 from __future__ import annotations
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class ScoreOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     talk_listen_ratio: float
     objection_raised: bool
     objection_handled_well: bool
@@ -13,9 +15,6 @@ class ScoreOut(BaseModel):
     overall_score: float
     scored_by: str
     flags: list[str]
-
-    class Config:
-        from_attributes = True
 
 
 class CallSummaryOut(BaseModel):
