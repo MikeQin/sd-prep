@@ -119,3 +119,22 @@ def test_dismissive_understand_reply_does_not_count_as_handling_objection():
 
     assert result.objection_handled_well is False
     assert "objection_not_handled" in result.flags
+
+
+def test_non_pricing_objection_is_not_scored_as_a_pricing_objection():
+    call = CallTranscript(
+        call_id="hs-0007",
+        rep_id="rep-01",
+        vertical="home_services",
+        turns=[
+            _turn("rep", "So what's most important to you as you decide?", 0, 3),
+            _turn("customer", "I'll need to talk to my spouse before we commit to anything.", 3, 6),
+        ],
+    )
+
+    result = RuleBasedScorer().score(call)
+
+    assert result.pricing_discussed is False
+    assert result.objection_raised is False
+    assert result.objection_handled_well is False
+    assert "objection_not_handled" not in result.flags

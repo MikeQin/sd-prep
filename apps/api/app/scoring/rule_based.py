@@ -51,11 +51,17 @@ class RuleBasedScorer:
         customer_turns = [t.text for t in call.turns if t.speaker == "customer"]
         rep_turns = [t.text for t in call.turns if t.speaker == "rep"]
 
-        objection_raised = any(_contains_any(t, OBJECTION_PHRASES) for t in customer_turns)
+        pricing_discussed = any(_contains_any(t, PRICING_PHRASES) for t in rep_turns)
+        # Requirements call for tracking specifically whether a *pricing*
+        # objection came up (docs/02-requirements.md #2). OBJECTION_PHRASES
+        # includes objections that aren't about price (e.g. "talk to my
+        # spouse"), so gate on pricing having actually been discussed.
+        objection_raised = pricing_discussed and any(
+            _contains_any(t, OBJECTION_PHRASES) for t in customer_turns
+        )
         objection_handled_well = objection_raised and any(
             _contains_any(t, HANDLING_PHRASES) for t in rep_turns
         )
-        pricing_discussed = any(_contains_any(t, PRICING_PHRASES) for t in rep_turns)
         next_step_offered = any(_contains_any(t, NEXT_STEP_PHRASES) for t in rep_turns)
         next_step_committed = next_step_offered and any(
             _contains_any(t, NEXT_STEP_COMMIT_PHRASES) for t in customer_turns
