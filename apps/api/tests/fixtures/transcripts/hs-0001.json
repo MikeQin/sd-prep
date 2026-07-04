@@ -1,0 +1,18 @@
+{
+  "call_id": "hs-0001",
+  "vertical": "home_services",
+  "rep_id": "rep-01",
+  "rep_name": "Jordan Blake",
+  "customer_name": "Pat Romero",
+  "date": "2026-05-02",
+  "duration_seconds": 19,
+  "turns": [
+    {"speaker": "rep", "start": 0, "end": 3, "text": "Thanks for having me out today."},
+    {"speaker": "customer", "start": 3, "end": 6, "text": "Sure, happy to walk through it."},
+    {"speaker": "rep", "start": 6, "end": 9, "text": "The total price for this would be $4,200."},
+    {"speaker": "customer", "start": 9, "end": 12, "text": "That feels too expensive honestly."},
+    {"speaker": "rep", "start": 12, "end": 15, "text": "Totally fair, let's break down what's included and financing options."},
+    {"speaker": "rep", "start": 15, "end": 17, "text": "Let's schedule this for next week."},
+    {"speaker": "customer", "start": 17, "end": 19, "text": "Sounds good, let's do it."}
+  ]
+}

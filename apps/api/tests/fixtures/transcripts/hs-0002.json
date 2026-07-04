@@ -1,0 +1,15 @@
+{
+  "call_id": "hs-0002",
+  "vertical": "home_services",
+  "rep_id": "rep-01",
+  "rep_name": "Jordan Blake",
+  "customer_name": "Sam Osei",
+  "date": "2026-05-03",
+  "duration_seconds": 11,
+  "turns": [
+    {"speaker": "rep", "start": 0, "end": 5, "text": "Here's the system and here's the total cost, $6,800."},
+    {"speaker": "customer", "start": 5, "end": 8, "text": "That's too expensive, we'll need to think about it."},
+    {"speaker": "rep", "start": 8, "end": 10, "text": "Okay well the price is the price."},
+    {"speaker": "customer", "start": 10, "end": 11, "text": "We'll see."}
+  ]
+}
