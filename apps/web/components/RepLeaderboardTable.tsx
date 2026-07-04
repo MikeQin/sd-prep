@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import type { RepSummary } from "../lib/types";
 
 export function RepLeaderboardTable({ reps }: { reps: RepSummary[] }) {
@@ -16,7 +17,7 @@ export function RepLeaderboardTable({ reps }: { reps: RepSummary[] }) {
       <tbody>
         {sorted.map((rep) => (
           <tr key={rep.id}>
-            <td>{rep.name}</td>
+            <td><Link href={`/reps/${rep.id}`}>{rep.name}</Link></td>
             <td>{rep.vertical}</td>
             <td>{rep.call_count}</td>
             <td>{rep.average_score.toFixed(1)}</td>
