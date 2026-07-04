@@ -59,23 +59,18 @@ call into an objective scorecard, at scale.
 
 ## Independent Review & Hardening
 
-Built with AI assistance, then **independently reviewed** rather than
-trusted at face value - the implementing agent's own "all green" self-review
-missed all of this:
+Built with AI assistance, then independently reviewed - the implementing
+agent's own "all green" self-review missed all of this.
 
-- 8-angle automated review (correctness, cleanup, efficiency, altitude,
-  conventions) + manual verification -> **20 confirmed findings**
-- Notable catches: a scoring value that serialized as invalid JSON, zero
-  navigation links anywhere in the frontend, keyword false-positives in the
-  core scoring signal, N+1 queries, a silent scorer-fallback with no record
-  of which backend actually scored a call
-- Every fix went through the same TDD cycle as the original build: failing
-  test -> fix -> passing test -> commit
-- One regression test (scorer vs. transcript generator wording) caught a
-  **real pre-existing bug**, not something the review itself introduced
+- 8-angle automated review + manual verification -> **20 confirmed findings**
+  (invalid-JSON scoring value, zero navigation links, keyword
+  false-positives in scoring, N+1 queries, a silent scorer fallback)
+- Every fix: failing test -> fix -> passing test -> commit, same discipline
+  as the original build
+- One regression test caught a **real pre-existing bug**, not something the
+  review itself introduced
 
-*Talking point: reviewing AI-generated code is a skill in its own right -
-passing tests and a clean type-check are necessary, not sufficient.*
+*Passing tests and a clean type-check are necessary, not sufficient.*
 
 ---
 
@@ -94,17 +89,13 @@ passing tests and a clean type-check are necessary, not sufficient.*
 
 ![bg right:40% fit](../design/diagrams/production-architecture.png)
 
-- Audio -> ASR -> queue -> autoscaled scoring workers
-  (**at-least-once delivery - workers must upsert by `call_id`, idempotently**)
-- Postgres with read replicas, Redis cache (**cache-aside + write-time
-  invalidation**, not just TTL) for dashboard reads
-- Read replicas mean a brief replication-lag window before a newly-scored
-  call is visible - acceptable for a coaching dashboard, not a real-time system
-- Multi-tenant auth/RBAC, encryption in transit/at rest, **and a defined
-  transcript retention/deletion policy** - this data is real customer PII
-- Stateless API tier behind a load balancer, multi-AZ for HA, paginated
-  list endpoints
-- Graceful degradation: LLM scorer path failure falls back to rule-based
+- Audio -> ASR -> queue -> autoscaled workers (idempotent upsert by `call_id`)
+- Postgres + read replicas; Redis cache-aside w/ write-time invalidation
+- Stateless, autoscaled API tier, multi-AZ, paginated list endpoints
+- Multi-tenant auth/RBAC, encryption, defined retention/deletion policy
+- Graceful degradation: LLM failure falls back to rule-based scoring
+
+*Tradeoffs (replica lag, cache staleness) detailed in `design/architecture.md`.*
 
 ---
 
