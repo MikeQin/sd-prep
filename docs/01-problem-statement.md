@@ -23,8 +23,11 @@ listening to every call.
 ## What You're Building
 
 A working product - not a slide deck - that a sales manager could open and
-immediately get value from. You have about 4 hours. You're expected to use
-AI coding assistants (Claude Code, Codex, Cursor, or your own tools) the same
+immediately get value from. That means one cohesive tool a manager can
+navigate between views of (which reps need attention, why, and what
+happened on a specific call), not three disconnected screens they have to
+know the right URL for. You have about 4 hours. You're expected to use AI
+coding assistants (Claude Code, Codex, Cursor, or your own tools) the same
 way you would on the job here - this is normal, not a shortcut being
 penalized.
 
