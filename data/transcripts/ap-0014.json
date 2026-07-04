@@ -1,0 +1,53 @@
+{
+  "call_id": "ap-0014",
+  "vertical": "apartment_leasing",
+  "rep_id": "rep-04",
+  "rep_name": "Morgan Ellis",
+  "customer_name": "Taylor Novak",
+  "date": "2026-05-15",
+  "duration_seconds": 30.8,
+  "turns": [
+    {
+      "speaker": "rep",
+      "start": 0.0,
+      "end": 5.2,
+      "text": "Hi Taylor Novak, welcome in! Thanks for scheduling a tour with us today."
+    },
+    {
+      "speaker": "customer",
+      "start": 5.2,
+      "end": 7.2,
+      "text": "Thanks, excited to see it!"
+    },
+    {
+      "speaker": "rep",
+      "start": 7.2,
+      "end": 11.6,
+      "text": "So tell me, what's prompting you to look into this now?"
+    },
+    {
+      "speaker": "customer",
+      "start": 11.6,
+      "end": 16.4,
+      "text": "We want something reliable that won't cost us more down the road."
+    },
+    {
+      "speaker": "rep",
+      "start": 16.4,
+      "end": 22.0,
+      "text": "Based on what we've walked through, the total price for this would be $4,200."
+    },
+    {
+      "speaker": "rep",
+      "start": 22.0,
+      "end": 28.8,
+      "text": "Let's go ahead and schedule this for next week, and I'll follow up tomorrow to confirm everything."
+    },
+    {
+      "speaker": "customer",
+      "start": 28.8,
+      "end": 30.8,
+      "text": "Sounds good, let's do it."
+    }
+  ]
+}

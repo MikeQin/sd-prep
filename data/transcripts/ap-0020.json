@@ -1,0 +1,65 @@
+{
+  "call_id": "ap-0020",
+  "vertical": "apartment_leasing",
+  "rep_id": "rep-05",
+  "rep_name": "Avery Kim",
+  "customer_name": "Chris Bellamy",
+  "date": "2026-05-21",
+  "duration_seconds": 38.0,
+  "turns": [
+    {
+      "speaker": "rep",
+      "start": 0.0,
+      "end": 5.2,
+      "text": "Hi Chris Bellamy, welcome in! Thanks for scheduling a tour with us today."
+    },
+    {
+      "speaker": "customer",
+      "start": 5.2,
+      "end": 7.2,
+      "text": "Thanks, excited to see it!"
+    },
+    {
+      "speaker": "rep",
+      "start": 7.2,
+      "end": 11.6,
+      "text": "So tell me, what's prompting you to look into this now?"
+    },
+    {
+      "speaker": "customer",
+      "start": 11.6,
+      "end": 15.2,
+      "text": "Honestly our old unit finally gave out last week."
+    },
+    {
+      "speaker": "rep",
+      "start": 15.2,
+      "end": 19.2,
+      "text": "For the package we discussed, the total cost is $6,800."
+    },
+    {
+      "speaker": "customer",
+      "start": 19.2,
+      "end": 23.6,
+      "text": "That's a bit more than I expected, it feels too expensive."
+    },
+    {
+      "speaker": "rep",
+      "start": 23.6,
+      "end": 29.2,
+      "text": "I understand, it is an investment. We do have financing options if that helps."
+    },
+    {
+      "speaker": "rep",
+      "start": 29.2,
+      "end": 35.6,
+      "text": "Why don't I send over the paperwork and we can follow up in a few days?"
+    },
+    {
+      "speaker": "customer",
+      "start": 35.6,
+      "end": 38.0,
+      "text": "Alright, we can look at it."
+    }
+  ]
+}

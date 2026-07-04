@@ -1,0 +1,65 @@
+{
+  "call_id": "ho-0003",
+  "vertical": "home_services",
+  "rep_id": "rep-01",
+  "rep_name": "Jordan Blake",
+  "customer_name": "Skyler Voss",
+  "date": "2026-05-04",
+  "duration_seconds": 44.4,
+  "turns": [
+    {
+      "speaker": "rep",
+      "start": 0.0,
+      "end": 5.2,
+      "text": "Good afternoon, I'm with the team that called about your electrical panel estimate."
+    },
+    {
+      "speaker": "customer",
+      "start": 5.2,
+      "end": 7.6,
+      "text": "Thanks for coming, come on in."
+    },
+    {
+      "speaker": "rep",
+      "start": 7.6,
+      "end": 12.0,
+      "text": "So tell me, what's prompting you to look into this now?"
+    },
+    {
+      "speaker": "customer",
+      "start": 12.0,
+      "end": 15.6,
+      "text": "Honestly our old unit finally gave out last week."
+    },
+    {
+      "speaker": "rep",
+      "start": 15.6,
+      "end": 19.6,
+      "text": "For the package we discussed, the total cost is $980/month."
+    },
+    {
+      "speaker": "customer",
+      "start": 19.6,
+      "end": 24.0,
+      "text": "That's a bit more than I expected, it feels too expensive."
+    },
+    {
+      "speaker": "rep",
+      "start": 24.0,
+      "end": 35.6,
+      "text": "Totally fair, a lot of folks feel that way at first. Let's break down what's included so you can see the value, and I can walk you through financing."
+    },
+    {
+      "speaker": "rep",
+      "start": 35.6,
+      "end": 42.4,
+      "text": "Let's go ahead and schedule this for next week, and I'll follow up tomorrow to confirm everything."
+    },
+    {
+      "speaker": "customer",
+      "start": 42.4,
+      "end": 44.4,
+      "text": "Sounds good, let's do it."
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "call_id": "ap-0023",
+  "vertical": "apartment_leasing",
+  "rep_id": "rep-06",
+  "rep_name": "Drew Patel",
+  "customer_name": "Alex Farrow",
+  "date": "2026-05-24",
+  "duration_seconds": 36.3,
+  "turns": [
+    {
+      "speaker": "rep",
+      "start": 0.0,
+      "end": 4.8,
+      "text": "Hey Alex Farrow, great to meet you, ready to see the community?"
+    },
+    {
+      "speaker": "customer",
+      "start": 4.8,
+      "end": 6.8,
+      "text": "Thanks, excited to see it!"
+    },
+    {
+      "speaker": "rep",
+      "start": 6.8,
+      "end": 10.8,
+      "text": "What's most important to you as you're making this decision?"
+    },
+    {
+      "speaker": "customer",
+      "start": 10.8,
+      "end": 14.4,
+      "text": "We're just comparing a few places before we decide."
+    },
+    {
+      "speaker": "rep",
+      "start": 14.4,
+      "end": 20.0,
+      "text": "Based on what we've walked through, the total price for this would be $980/month."
+    },
+    {
+      "speaker": "customer",
+      "start": 20.0,
+      "end": 24.4,
+      "text": "That's a bit more than I expected, it feels too expensive."
+    },
+    {
+      "speaker": "rep",
+      "start": 24.4,
+      "end": 30.8,
+      "text": "Okay, well, the price is the price, but let me know if you change your mind."
+    },
+    {
+      "speaker": "rep",
+      "start": 30.8,
+      "end": 34.8,
+      "text": "Alright, well, feel free to reach out whenever you're ready."
+    },
+    {
+      "speaker": "customer",
+      "start": 34.8,
+      "end": 36.3,
+      "text": "Yeah, maybe."
+    }
+  ]
+}

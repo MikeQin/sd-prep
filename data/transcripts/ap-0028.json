@@ -1,0 +1,65 @@
+{
+  "call_id": "ap-0028",
+  "vertical": "apartment_leasing",
+  "rep_id": "rep-06",
+  "rep_name": "Drew Patel",
+  "customer_name": "Pat Romero",
+  "date": "2026-05-29",
+  "duration_seconds": 34.3,
+  "turns": [
+    {
+      "speaker": "rep",
+      "start": 0.0,
+      "end": 4.8,
+      "text": "Hey Pat Romero, great to meet you, ready to see the community?"
+    },
+    {
+      "speaker": "customer",
+      "start": 4.8,
+      "end": 6.8,
+      "text": "Thanks, excited to see it!"
+    },
+    {
+      "speaker": "rep",
+      "start": 6.8,
+      "end": 10.8,
+      "text": "What's most important to you as you're making this decision?"
+    },
+    {
+      "speaker": "customer",
+      "start": 10.8,
+      "end": 14.4,
+      "text": "We're just comparing a few places before we decide."
+    },
+    {
+      "speaker": "rep",
+      "start": 14.4,
+      "end": 18.4,
+      "text": "For the package we discussed, the total cost is $4,200."
+    },
+    {
+      "speaker": "customer",
+      "start": 18.4,
+      "end": 22.4,
+      "text": "We were planning to shop around a little more first."
+    },
+    {
+      "speaker": "rep",
+      "start": 22.4,
+      "end": 28.8,
+      "text": "Okay, well, the price is the price, but let me know if you change your mind."
+    },
+    {
+      "speaker": "rep",
+      "start": 28.8,
+      "end": 32.8,
+      "text": "Alright, well, feel free to reach out whenever you're ready."
+    },
+    {
+      "speaker": "customer",
+      "start": 32.8,
+      "end": 34.3,
+      "text": "We'll see."
+    }
+  ]
+}

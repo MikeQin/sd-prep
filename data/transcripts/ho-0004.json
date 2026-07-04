@@ -1,0 +1,53 @@
+{
+  "call_id": "ho-0004",
+  "vertical": "home_services",
+  "rep_id": "rep-01",
+  "rep_name": "Jordan Blake",
+  "customer_name": "Robin Hart",
+  "date": "2026-05-05",
+  "duration_seconds": 31.2,
+  "turns": [
+    {
+      "speaker": "rep",
+      "start": 0.0,
+      "end": 5.2,
+      "text": "Good afternoon, I'm with the team that called about your HVAC system estimate."
+    },
+    {
+      "speaker": "customer",
+      "start": 5.2,
+      "end": 7.6,
+      "text": "Thanks for coming, come on in."
+    },
+    {
+      "speaker": "rep",
+      "start": 7.6,
+      "end": 11.6,
+      "text": "What's most important to you as you're making this decision?"
+    },
+    {
+      "speaker": "customer",
+      "start": 11.6,
+      "end": 16.4,
+      "text": "We want something reliable that won't cost us more down the road."
+    },
+    {
+      "speaker": "rep",
+      "start": 16.4,
+      "end": 22.0,
+      "text": "Based on what we've walked through, the total price for this would be $1,150/month."
+    },
+    {
+      "speaker": "rep",
+      "start": 22.0,
+      "end": 28.8,
+      "text": "Let's go ahead and schedule this for next week, and I'll follow up tomorrow to confirm everything."
+    },
+    {
+      "speaker": "customer",
+      "start": 28.8,
+      "end": 31.2,
+      "text": "Yes, let's move forward with that."
+    }
+  ]
+}

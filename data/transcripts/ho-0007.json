@@ -1,0 +1,65 @@
+{
+  "call_id": "ho-0007",
+  "vertical": "home_services",
+  "rep_id": "rep-02",
+  "rep_name": "Casey Nguyen",
+  "customer_name": "Sam Osei",
+  "date": "2026-05-08",
+  "duration_seconds": 42.0,
+  "turns": [
+    {
+      "speaker": "rep",
+      "start": 0.0,
+      "end": 6.0,
+      "text": "Hi Sam Osei, thanks for having me out today to look at your electrical panel."
+    },
+    {
+      "speaker": "customer",
+      "start": 6.0,
+      "end": 8.4,
+      "text": "Thanks for coming, come on in."
+    },
+    {
+      "speaker": "rep",
+      "start": 8.4,
+      "end": 12.8,
+      "text": "Have you looked at other options before reaching out to us?"
+    },
+    {
+      "speaker": "customer",
+      "start": 12.8,
+      "end": 17.6,
+      "text": "We want something reliable that won't cost us more down the road."
+    },
+    {
+      "speaker": "rep",
+      "start": 17.6,
+      "end": 23.2,
+      "text": "Based on what we've walked through, the total price for this would be $6,800."
+    },
+    {
+      "speaker": "customer",
+      "start": 23.2,
+      "end": 28.0,
+      "text": "I'll need to talk to my spouse before we commit to anything."
+    },
+    {
+      "speaker": "rep",
+      "start": 28.0,
+      "end": 33.6,
+      "text": "I understand, it is an investment. We do have financing options if that helps."
+    },
+    {
+      "speaker": "rep",
+      "start": 33.6,
+      "end": 40.0,
+      "text": "Why don't I send over the paperwork and we can follow up in a few days?"
+    },
+    {
+      "speaker": "customer",
+      "start": 40.0,
+      "end": 42.0,
+      "text": "Okay sure, send it over."
+    }
+  ]
+}

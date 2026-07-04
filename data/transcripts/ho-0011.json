@@ -1,0 +1,65 @@
+{
+  "call_id": "ho-0011",
+  "vertical": "home_services",
+  "rep_id": "rep-03",
+  "rep_name": "Riley Thompson",
+  "customer_name": "Reese Dunlap",
+  "date": "2026-05-12",
+  "duration_seconds": 36.3,
+  "turns": [
+    {
+      "speaker": "rep",
+      "start": 0.0,
+      "end": 5.2,
+      "text": "Good afternoon, I'm with the team that called about your HVAC system estimate."
+    },
+    {
+      "speaker": "customer",
+      "start": 5.2,
+      "end": 7.6,
+      "text": "Thanks for coming, come on in."
+    },
+    {
+      "speaker": "rep",
+      "start": 7.6,
+      "end": 11.6,
+      "text": "What's most important to you as you're making this decision?"
+    },
+    {
+      "speaker": "customer",
+      "start": 11.6,
+      "end": 16.4,
+      "text": "We want something reliable that won't cost us more down the road."
+    },
+    {
+      "speaker": "rep",
+      "start": 16.4,
+      "end": 20.4,
+      "text": "For the package we discussed, the total cost is $980/month."
+    },
+    {
+      "speaker": "customer",
+      "start": 20.4,
+      "end": 24.4,
+      "text": "We were planning to shop around a little more first."
+    },
+    {
+      "speaker": "rep",
+      "start": 24.4,
+      "end": 30.8,
+      "text": "Okay, well, the price is the price, but let me know if you change your mind."
+    },
+    {
+      "speaker": "rep",
+      "start": 30.8,
+      "end": 34.8,
+      "text": "Alright, well, feel free to reach out whenever you're ready."
+    },
+    {
+      "speaker": "customer",
+      "start": 34.8,
+      "end": 36.3,
+      "text": "We'll see."
+    }
+  ]
+}

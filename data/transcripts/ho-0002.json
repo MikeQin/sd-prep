@@ -1,0 +1,53 @@
+{
+  "call_id": "ho-0002",
+  "vertical": "home_services",
+  "rep_id": "rep-01",
+  "rep_name": "Jordan Blake",
+  "customer_name": "Pat Romero",
+  "date": "2026-05-03",
+  "duration_seconds": 30.8,
+  "turns": [
+    {
+      "speaker": "rep",
+      "start": 0.0,
+      "end": 6.0,
+      "text": "Hi Pat Romero, thanks for having me out today to look at your HVAC system."
+    },
+    {
+      "speaker": "customer",
+      "start": 6.0,
+      "end": 8.4,
+      "text": "Thanks for coming, come on in."
+    },
+    {
+      "speaker": "rep",
+      "start": 8.4,
+      "end": 12.8,
+      "text": "So tell me, what's prompting you to look into this now?"
+    },
+    {
+      "speaker": "customer",
+      "start": 12.8,
+      "end": 16.4,
+      "text": "Honestly our old unit finally gave out last week."
+    },
+    {
+      "speaker": "rep",
+      "start": 16.4,
+      "end": 22.0,
+      "text": "Based on what we've walked through, the total price for this would be $4,200."
+    },
+    {
+      "speaker": "rep",
+      "start": 22.0,
+      "end": 28.8,
+      "text": "Let's go ahead and schedule this for next week, and I'll follow up tomorrow to confirm everything."
+    },
+    {
+      "speaker": "customer",
+      "start": 28.8,
+      "end": 30.8,
+      "text": "Sounds good, let's do it."
+    }
+  ]
+}

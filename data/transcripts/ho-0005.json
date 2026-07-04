@@ -1,0 +1,65 @@
+{
+  "call_id": "ho-0005",
+  "vertical": "home_services",
+  "rep_id": "rep-02",
+  "rep_name": "Casey Nguyen",
+  "customer_name": "Quinn Alvarado",
+  "date": "2026-05-06",
+  "duration_seconds": 39.2,
+  "turns": [
+    {
+      "speaker": "rep",
+      "start": 0.0,
+      "end": 5.2,
+      "text": "Good afternoon, I'm with the team that called about your water heater estimate."
+    },
+    {
+      "speaker": "customer",
+      "start": 5.2,
+      "end": 7.6,
+      "text": "Thanks for coming, come on in."
+    },
+    {
+      "speaker": "rep",
+      "start": 7.6,
+      "end": 12.0,
+      "text": "Have you looked at other options before reaching out to us?"
+    },
+    {
+      "speaker": "customer",
+      "start": 12.0,
+      "end": 15.6,
+      "text": "Honestly our old unit finally gave out last week."
+    },
+    {
+      "speaker": "rep",
+      "start": 15.6,
+      "end": 21.2,
+      "text": "Based on what we've walked through, the total price for this would be $4,200."
+    },
+    {
+      "speaker": "customer",
+      "start": 21.2,
+      "end": 25.2,
+      "text": "We were planning to shop around a little more first."
+    },
+    {
+      "speaker": "rep",
+      "start": 25.2,
+      "end": 30.8,
+      "text": "I understand, it is an investment. We do have financing options if that helps."
+    },
+    {
+      "speaker": "rep",
+      "start": 30.8,
+      "end": 37.2,
+      "text": "Why don't I send over the paperwork and we can follow up in a few days?"
+    },
+    {
+      "speaker": "customer",
+      "start": 37.2,
+      "end": 39.2,
+      "text": "Okay sure, send it over."
+    }
+  ]
+}

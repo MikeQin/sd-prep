@@ -1,0 +1,65 @@
+{
+  "call_id": "ho-0014",
+  "vertical": "home_services",
+  "rep_id": "rep-03",
+  "rep_name": "Riley Thompson",
+  "customer_name": "Reese Dunlap",
+  "date": "2026-05-15",
+  "duration_seconds": 37.1,
+  "turns": [
+    {
+      "speaker": "rep",
+      "start": 0.0,
+      "end": 6.0,
+      "text": "Hi Reese Dunlap, thanks for having me out today to look at your water heater."
+    },
+    {
+      "speaker": "customer",
+      "start": 6.0,
+      "end": 8.4,
+      "text": "Thanks for coming, come on in."
+    },
+    {
+      "speaker": "rep",
+      "start": 8.4,
+      "end": 12.8,
+      "text": "Have you looked at other options before reaching out to us?"
+    },
+    {
+      "speaker": "customer",
+      "start": 12.8,
+      "end": 16.4,
+      "text": "Honestly our old unit finally gave out last week."
+    },
+    {
+      "speaker": "rep",
+      "start": 16.4,
+      "end": 20.4,
+      "text": "For the package we discussed, the total cost is $4,200."
+    },
+    {
+      "speaker": "customer",
+      "start": 20.4,
+      "end": 25.2,
+      "text": "I'll need to talk to my spouse before we commit to anything."
+    },
+    {
+      "speaker": "rep",
+      "start": 25.2,
+      "end": 31.6,
+      "text": "Okay, well, the price is the price, but let me know if you change your mind."
+    },
+    {
+      "speaker": "rep",
+      "start": 31.6,
+      "end": 35.6,
+      "text": "Alright, well, feel free to reach out whenever you're ready."
+    },
+    {
+      "speaker": "customer",
+      "start": 35.6,
+      "end": 37.1,
+      "text": "Yeah, maybe."
+    }
+  ]
+}

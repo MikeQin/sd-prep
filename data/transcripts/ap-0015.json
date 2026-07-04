@@ -1,0 +1,53 @@
+{
+  "call_id": "ap-0015",
+  "vertical": "apartment_leasing",
+  "rep_id": "rep-04",
+  "rep_name": "Morgan Ellis",
+  "customer_name": "Jamie Cruz",
+  "date": "2026-05-16",
+  "duration_seconds": 28.0,
+  "turns": [
+    {
+      "speaker": "rep",
+      "start": 0.0,
+      "end": 4.8,
+      "text": "Hey Jamie Cruz, great to meet you, ready to see the community?"
+    },
+    {
+      "speaker": "customer",
+      "start": 4.8,
+      "end": 6.8,
+      "text": "Thanks, excited to see it!"
+    },
+    {
+      "speaker": "rep",
+      "start": 6.8,
+      "end": 11.2,
+      "text": "Have you looked at other options before reaching out to us?"
+    },
+    {
+      "speaker": "customer",
+      "start": 11.2,
+      "end": 14.8,
+      "text": "Honestly our old unit finally gave out last week."
+    },
+    {
+      "speaker": "rep",
+      "start": 14.8,
+      "end": 18.8,
+      "text": "For the package we discussed, the total cost is $1,150/month."
+    },
+    {
+      "speaker": "rep",
+      "start": 18.8,
+      "end": 25.6,
+      "text": "Let's go ahead and schedule this for next week, and I'll follow up tomorrow to confirm everything."
+    },
+    {
+      "speaker": "customer",
+      "start": 25.6,
+      "end": 28.0,
+      "text": "Yes, let's move forward with that."
+    }
+  ]
+}

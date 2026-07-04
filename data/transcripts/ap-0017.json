@@ -1,0 +1,65 @@
+{
+  "call_id": "ap-0017",
+  "vertical": "apartment_leasing",
+  "rep_id": "rep-04",
+  "rep_name": "Morgan Ellis",
+  "customer_name": "Reese Dunlap",
+  "date": "2026-05-18",
+  "duration_seconds": 45.6,
+  "turns": [
+    {
+      "speaker": "rep",
+      "start": 0.0,
+      "end": 5.2,
+      "text": "Hi Reese Dunlap, welcome in! Thanks for scheduling a tour with us today."
+    },
+    {
+      "speaker": "customer",
+      "start": 5.2,
+      "end": 7.2,
+      "text": "Thanks, excited to see it!"
+    },
+    {
+      "speaker": "rep",
+      "start": 7.2,
+      "end": 11.6,
+      "text": "So tell me, what's prompting you to look into this now?"
+    },
+    {
+      "speaker": "customer",
+      "start": 11.6,
+      "end": 15.2,
+      "text": "Honestly our old unit finally gave out last week."
+    },
+    {
+      "speaker": "rep",
+      "start": 15.2,
+      "end": 20.8,
+      "text": "Based on what we've walked through, the total price for this would be $4,200."
+    },
+    {
+      "speaker": "customer",
+      "start": 20.8,
+      "end": 25.2,
+      "text": "That's a bit more than I expected, it feels too expensive."
+    },
+    {
+      "speaker": "rep",
+      "start": 25.2,
+      "end": 36.8,
+      "text": "Totally fair, a lot of folks feel that way at first. Let's break down what's included so you can see the value, and I can walk you through financing."
+    },
+    {
+      "speaker": "rep",
+      "start": 36.8,
+      "end": 43.6,
+      "text": "Let's go ahead and schedule this for next week, and I'll follow up tomorrow to confirm everything."
+    },
+    {
+      "speaker": "customer",
+      "start": 43.6,
+      "end": 45.6,
+      "text": "Sounds good, let's do it."
+    }
+  ]
+}

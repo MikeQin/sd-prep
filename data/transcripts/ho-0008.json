@@ -1,0 +1,65 @@
+{
+  "call_id": "ho-0008",
+  "vertical": "home_services",
+  "rep_id": "rep-02",
+  "rep_name": "Casey Nguyen",
+  "customer_name": "Chris Bellamy",
+  "date": "2026-05-09",
+  "duration_seconds": 38.8,
+  "turns": [
+    {
+      "speaker": "rep",
+      "start": 0.0,
+      "end": 6.0,
+      "text": "Hi Chris Bellamy, thanks for having me out today to look at your HVAC system."
+    },
+    {
+      "speaker": "customer",
+      "start": 6.0,
+      "end": 8.4,
+      "text": "Thanks for coming, come on in."
+    },
+    {
+      "speaker": "rep",
+      "start": 8.4,
+      "end": 12.8,
+      "text": "So tell me, what's prompting you to look into this now?"
+    },
+    {
+      "speaker": "customer",
+      "start": 12.8,
+      "end": 16.4,
+      "text": "We're just comparing a few places before we decide."
+    },
+    {
+      "speaker": "rep",
+      "start": 16.4,
+      "end": 20.4,
+      "text": "For the package we discussed, the total cost is $980/month."
+    },
+    {
+      "speaker": "customer",
+      "start": 20.4,
+      "end": 24.8,
+      "text": "That's a bit more than I expected, it feels too expensive."
+    },
+    {
+      "speaker": "rep",
+      "start": 24.8,
+      "end": 30.4,
+      "text": "I understand, it is an investment. We do have financing options if that helps."
+    },
+    {
+      "speaker": "rep",
+      "start": 30.4,
+      "end": 36.8,
+      "text": "Why don't I send over the paperwork and we can follow up in a few days?"
+    },
+    {
+      "speaker": "customer",
+      "start": 36.8,
+      "end": 38.8,
+      "text": "Okay sure, send it over."
+    }
+  ]
+}

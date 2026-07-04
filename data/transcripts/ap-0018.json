@@ -1,0 +1,65 @@
+{
+  "call_id": "ap-0018",
+  "vertical": "apartment_leasing",
+  "rep_id": "rep-04",
+  "rep_name": "Morgan Ellis",
+  "customer_name": "Alex Farrow",
+  "date": "2026-05-19",
+  "duration_seconds": 45.2,
+  "turns": [
+    {
+      "speaker": "rep",
+      "start": 0.0,
+      "end": 4.8,
+      "text": "Hey Alex Farrow, great to meet you, ready to see the community?"
+    },
+    {
+      "speaker": "customer",
+      "start": 4.8,
+      "end": 6.8,
+      "text": "Thanks, excited to see it!"
+    },
+    {
+      "speaker": "rep",
+      "start": 6.8,
+      "end": 11.2,
+      "text": "So tell me, what's prompting you to look into this now?"
+    },
+    {
+      "speaker": "customer",
+      "start": 11.2,
+      "end": 16.0,
+      "text": "We want something reliable that won't cost us more down the road."
+    },
+    {
+      "speaker": "rep",
+      "start": 16.0,
+      "end": 20.0,
+      "text": "For the package we discussed, the total cost is $6,800."
+    },
+    {
+      "speaker": "customer",
+      "start": 20.0,
+      "end": 24.8,
+      "text": "I'll need to talk to my spouse before we commit to anything."
+    },
+    {
+      "speaker": "rep",
+      "start": 24.8,
+      "end": 36.4,
+      "text": "Totally fair, a lot of folks feel that way at first. Let's break down what's included so you can see the value, and I can walk you through financing."
+    },
+    {
+      "speaker": "rep",
+      "start": 36.4,
+      "end": 43.2,
+      "text": "Let's go ahead and schedule this for next week, and I'll follow up tomorrow to confirm everything."
+    },
+    {
+      "speaker": "customer",
+      "start": 43.2,
+      "end": 45.2,
+      "text": "Sounds good, let's do it."
+    }
+  ]
+}
