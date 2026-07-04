@@ -17,12 +17,12 @@ def load_transcripts(directory: Path = TRANSCRIPTS_DIR) -> list[dict]:
 
 
 def seed_database(db: Session, directory: Path = TRANSCRIPTS_DIR) -> int:
-    if db.query(RepDB).first() is not None:
-        return 0  # already seeded
-
     scorer = get_scorer()
     count = 0
     for raw in load_transcripts(directory):
+        if db.get(CallDB, raw["call_id"]) is not None:
+            continue  # this call was already seeded in a previous run
+
         if db.get(RepDB, raw["rep_id"]) is None:
             db.add(RepDB(id=raw["rep_id"], name=raw["rep_name"], vertical=raw["vertical"]))
 

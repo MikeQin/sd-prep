@@ -1,3 +1,5 @@
+import json
+import shutil
 from pathlib import Path
 
 from sqlalchemy import create_engine
@@ -34,3 +36,23 @@ def test_seed_database_is_idempotent():
 
     assert second_count == 0
     assert db.query(CallDB).count() == 2
+
+
+def test_seed_database_picks_up_new_transcripts_added_after_first_seed(tmp_path):
+    seed_dir = tmp_path / "transcripts"
+    seed_dir.mkdir()
+    for fixture in FIXTURE_DIR.glob("*.json"):
+        shutil.copy(fixture, seed_dir / fixture.name)
+
+    db = _make_session()
+    first_count = seed_database(db, directory=seed_dir)
+    assert first_count == 2
+
+    new_call = json.loads((FIXTURE_DIR / "hs-0001.json").read_text())
+    new_call["call_id"] = "hs-0003"
+    (seed_dir / "hs-0003.json").write_text(json.dumps(new_call))
+
+    second_count = seed_database(db, directory=seed_dir)
+
+    assert second_count == 1
+    assert db.query(CallDB).count() == 3
