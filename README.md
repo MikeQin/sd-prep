@@ -36,3 +36,12 @@ See `docs/superpowers/specs/2026-07-03-rilla-onsite-prep-design.md` for the
 full design rationale, and
 `docs/superpowers/plans/2026-07-03-rilla-onsite-prep-plan.md` for the
 implementation plan this repo was built from.
+
+## Reference Solution (on the `solution` branch)
+
+`git fetch origin && git checkout solution` to see:
+- `design/architecture.md` + `design/diagrams/` - full system design
+- `apps/api` - FastAPI backend, `apps/web` - Next.js/TS frontend
+- `presentation/slides.md` - a reference Marp deck
+
+Try `docs/03-rehearsal-checklist.md` for a full timed dry run.
