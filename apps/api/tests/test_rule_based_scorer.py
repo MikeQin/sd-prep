@@ -85,3 +85,37 @@ def test_talk_listen_ratio_is_finite_when_customer_never_speaks():
 
     assert result.talk_listen_ratio == 999.0
     assert "rep_talked_too_much" in result.flags
+
+
+def test_bare_yes_does_not_count_as_next_step_commitment():
+    call = CallTranscript(
+        call_id="hs-0005",
+        rep_id="rep-03",
+        vertical="home_services",
+        turns=[
+            _turn("rep", "Let's schedule this for next week.", 0, 3),
+            _turn("customer", "Yes, but I need to shop around before deciding.", 3, 6),
+        ],
+    )
+
+    result = RuleBasedScorer().score(call)
+
+    assert result.next_step_committed is False
+    assert "no_next_step_commitment" in result.flags
+
+
+def test_dismissive_understand_reply_does_not_count_as_handling_objection():
+    call = CallTranscript(
+        call_id="hs-0006",
+        rep_id="rep-03",
+        vertical="home_services",
+        turns=[
+            _turn("customer", "That's too expensive for us.", 0, 3),
+            _turn("rep", "I understand, but the price is firm.", 3, 6),
+        ],
+    )
+
+    result = RuleBasedScorer().score(call)
+
+    assert result.objection_handled_well is False
+    assert "objection_not_handled" in result.flags

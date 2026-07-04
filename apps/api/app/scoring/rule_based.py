@@ -1,9 +1,14 @@
 from __future__ import annotations
 
+import re
+
 from app.scoring.models import CallTranscript, ScoreResult
 
 OBJECTION_PHRASES = ["too expensive", "talk to my spouse", "shop around", "think about it"]
-HANDLING_PHRASES = ["financing", "break down what's included", "value", "understand"]
+# "understand" and "value" were dropped: they're generic enough to match a
+# dismissive non-answer ("I understand, but the price is firm.") as if the
+# objection had actually been addressed.
+HANDLING_PHRASES = ["financing", "break down what's included"]
 PRICING_PHRASES = ["price", "cost", "total", "$", "/month"]
 
 # Cap rather than use float('inf') for zero-customer-talk-time calls: `inf`
@@ -11,14 +16,28 @@ PRICING_PHRASES = ["price", "cost", "total", "$", "/month"]
 # parsers on the receiving end (e.g. the frontend's fetch().json()).
 MAX_TALK_LISTEN_RATIO = 999.0
 NEXT_STEP_PHRASES = ["schedule", "follow up", "send over", "paperwork", "next week", "move forward"]
-NEXT_STEP_COMMIT_PHRASES = ["sounds good", "let's do it", "let's move forward", "sure, send it", "yes"]
+# Bare "yes" was dropped: a reply like "Yes, but I need to shop around" would
+# otherwise count as a commitment even though it's a deferral.
+NEXT_STEP_COMMIT_PHRASES = ["sounds good", "let's do it", "let's move forward", "sure, send it"]
 POSITIVE_WORDS = ["great", "good", "excited", "sounds good", "yes", "sure"]
 NEGATIVE_WORDS = ["expensive", "not sure", "think about it", "shop around", "we'll see"]
+
+_SINGLE_WORD_RE = re.compile(r"^[a-z']+$")
 
 
 def _contains_any(text: str, phrases: list[str]) -> bool:
     lowered = text.lower()
-    return any(phrase in lowered for phrase in phrases)
+    for phrase in phrases:
+        # Single bare words get word-boundary matching so they don't fire
+        # inside an unrelated longer word; multi-word phrases and phrases
+        # with symbols (e.g. "$", "/month") keep plain substring matching,
+        # since \b doesn't work sensibly around non-word characters.
+        if _SINGLE_WORD_RE.match(phrase):
+            if re.search(rf"\b{re.escape(phrase)}\b", lowered):
+                return True
+        elif phrase in lowered:
+            return True
+    return False
 
 
 class RuleBasedScorer:
