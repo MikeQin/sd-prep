@@ -1,0 +1,17 @@
+flowchart LR
+    subgraph Frontend [apps/web - Next.js + TS]
+        UI[Dashboard / Call Detail / Rep Profile]
+    end
+    subgraph Backend [apps/api - FastAPI]
+        API[REST API]
+        Scorer[Scorer Strategy: RuleBasedScorer / LLMScorer]
+        Repo[Repository Layer]
+    end
+    DB[(SQLite)]
+    Seed[data/transcripts/*.json]
+
+    UI -->|HTTP/JSON| API
+    API --> Scorer
+    API --> Repo
+    Repo --> DB
+    Seed -->|seed on startup| Repo

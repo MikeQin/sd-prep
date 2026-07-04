@@ -1,0 +1,13 @@
+sequenceDiagram
+    participant Seed as data/transcripts/*.json
+    participant API as FastAPI app startup
+    participant Scorer as Scorer (RuleBasedScorer)
+    participant DB as SQLite
+
+    API->>Seed: read transcript files
+    loop each transcript
+        API->>Scorer: score(call_transcript)
+        Scorer-->>API: ScoreResult
+        API->>DB: insert rep, call, score rows
+    end
+    Note over API,DB: Subsequent requests read directly from DB, no re-scoring

@@ -1,0 +1,29 @@
+erDiagram
+    REP ||--o{ CALL : takes
+    CALL ||--|| SCORE : has
+
+    REP {
+        string id PK
+        string name
+        string vertical
+    }
+    CALL {
+        string id PK
+        string rep_id FK
+        string customer_name
+        string vertical
+        date date
+        float duration_seconds
+        json turns
+    }
+    SCORE {
+        string call_id PK "FK"
+        float talk_listen_ratio
+        bool objection_raised
+        bool objection_handled_well
+        bool pricing_discussed
+        bool next_step_committed
+        float sentiment_score
+        float overall_score
+        json flags
+    }

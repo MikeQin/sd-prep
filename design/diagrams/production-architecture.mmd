@@ -1,0 +1,35 @@
+flowchart TB
+    subgraph Clients
+        Mgr[Manager Dashboard - Next.js]
+    end
+    LB[Load Balancer]
+    subgraph API_Tier [Stateless API Tier, autoscaled]
+        API1[API instance]
+        API2[API instance]
+    end
+    Queue[[Message Queue]]
+    subgraph Workers [Scoring Workers, autoscaled]
+        W1[Worker]
+        W2[Worker]
+    end
+    ASR[ASR / Transcription Service]
+    ObjStore[(Object Storage - raw audio)]
+    PG[(Postgres - primary + read replicas)]
+    Cache[(Redis Cache)]
+    LLM[LLM Scoring Provider]
+
+    Mgr -->|HTTPS| LB --> API1
+    LB --> API2
+    API1 --> Cache
+    API2 --> Cache
+    Cache --> PG
+    API1 --> PG
+    API2 --> PG
+
+    ObjStore --> ASR --> Queue
+    Queue --> W1
+    Queue --> W2
+    W1 --> LLM
+    W2 --> LLM
+    W1 --> PG
+    W2 --> PG
