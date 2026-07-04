@@ -20,16 +20,17 @@ flowchart TB
 
     Mgr -->|HTTPS| LB --> API1
     LB --> API2
-    API1 --> Cache
-    API2 --> Cache
-    Cache --> PG
-    API1 --> PG
-    API2 --> PG
+    API1 -->|cache-aside, TTL ~30s| Cache
+    API2 -->|cache-aside, TTL ~30s| Cache
+    Cache -->|miss| PG
+    API1 -->|writes + uncached reads| PG
+    API2 -->|writes + uncached reads| PG
 
     ObjStore --> ASR --> Queue
-    Queue --> W1
-    Queue --> W2
+    Queue -->|at-least-once, idempotent by call_id| W1
+    Queue -->|at-least-once, idempotent by call_id| W2
     W1 --> LLM
     W2 --> LLM
-    W1 --> PG
-    W2 --> PG
+    W1 -->|upsert score, invalidate rep's cache entry| PG
+    W2 -->|upsert score, invalidate rep's cache entry| PG
+    PG -.->|replica lag: read-your-writes not guaranteed| API1

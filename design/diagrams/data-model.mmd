@@ -1,6 +1,6 @@
 erDiagram
     REP ||--o{ CALL : takes
-    CALL ||--|| SCORE : has
+    CALL ||--o| SCORE : has
 
     REP {
         string id PK
@@ -25,5 +25,6 @@ erDiagram
         bool next_step_committed
         float sentiment_score
         float overall_score
+        string scored_by
         json flags
     }
