@@ -27,6 +27,13 @@ class CallSummaryOut(BaseModel):
     overall_score: float
 
 
+class TurnOut(BaseModel):
+    speaker: str
+    start: float
+    end: float
+    text: str
+
+
 class CallDetailOut(BaseModel):
     id: str
     rep_id: str
@@ -34,7 +41,7 @@ class CallDetailOut(BaseModel):
     vertical: str
     date: str
     duration_seconds: float
-    turns: list[dict]
+    turns: list[TurnOut]
     score: ScoreOut
 
 

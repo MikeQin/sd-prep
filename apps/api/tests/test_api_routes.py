@@ -3,13 +3,14 @@ from pathlib import Path
 import pytest
 from fastapi import HTTPException
 from fastapi.testclient import TestClient
+from pydantic import ValidationError
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
 from app.db import Base
 from app.main import app
-from app.models_db import CallDB
+from app.models_db import CallDB, ScoreDB
 from app.routes import get_call, get_db
 from app.seed import seed_database
 
@@ -112,4 +113,38 @@ def test_get_call_raises_clean_error_for_call_without_a_score():
         get_call("hs-no-score", db=db)
 
     assert exc_info.value.status_code == 500
+    db.close()
+
+
+def test_get_call_rejects_malformed_turn_shape():
+    db = TestSession()
+    db.add(
+        CallDB(
+            id="hs-bad-turn",
+            rep_id="rep-01",
+            customer_name="Bad Turn Customer",
+            vertical="home_services",
+            date="2026-01-03",
+            duration_seconds=1.0,
+            turns=[{"speaker": "rep", "start": 0, "end": 1, "message": "hi"}],  # wrong key
+        )
+    )
+    db.add(
+        ScoreDB(
+            call_id="hs-bad-turn",
+            talk_listen_ratio=1.0,
+            objection_raised=False,
+            objection_handled_well=False,
+            pricing_discussed=False,
+            next_step_committed=False,
+            sentiment_score=0.0,
+            overall_score=50.0,
+            scored_by="rule",
+            flags=[],
+        )
+    )
+    db.commit()
+
+    with pytest.raises(ValidationError):
+        get_call("hs-bad-turn", db=db)
     db.close()
