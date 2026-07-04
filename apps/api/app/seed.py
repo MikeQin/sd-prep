@@ -55,6 +55,7 @@ def seed_database(db: Session, directory: Path = TRANSCRIPTS_DIR) -> int:
                 next_step_committed=result.next_step_committed,
                 sentiment_score=result.sentiment_score,
                 overall_score=result.overall_score,
+                scored_by=result.scored_by,
                 flags=result.flags,
             )
         )

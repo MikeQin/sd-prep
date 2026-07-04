@@ -8,6 +8,10 @@ from app.scoring.rule_based import RuleBasedScorer
 
 def get_scorer():
     backend = os.environ.get("SCORER_BACKEND", "rule").lower()
+    if backend == "rule":
+        return RuleBasedScorer()
     if backend == "llm":
         return LLMScorer()
-    return RuleBasedScorer()
+    raise ValueError(
+        f"Unrecognized SCORER_BACKEND={backend!r}; expected 'rule' or 'llm'"
+    )

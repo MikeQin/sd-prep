@@ -97,5 +97,6 @@ class RuleBasedScorer:
             next_step_committed=next_step_committed,
             sentiment_score=sentiment_score,
             overall_score=overall_score,
+            scored_by="rule",
             flags=flags,
         )

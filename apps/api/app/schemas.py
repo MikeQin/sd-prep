@@ -11,6 +11,7 @@ class ScoreOut(BaseModel):
     next_step_committed: bool
     sentiment_score: float
     overall_score: float
+    scored_by: str
     flags: list[str]
 
     class Config:

@@ -40,6 +40,7 @@ def _seed(db, rep_count=2, calls_per_rep=2):
                     next_step_committed=True,
                     sentiment_score=0.0,
                     overall_score=80.0,
+                    scored_by="rule",
                     flags=[],
                 )
             )

@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-import os
-
 from app.scoring.models import CallTranscript, ScoreResult
 from app.scoring.rule_based import RuleBasedScorer
 
@@ -18,10 +16,10 @@ class LLMScorer:
         self._fallback = RuleBasedScorer()
 
     def score(self, call: CallTranscript) -> ScoreResult:
-        api_key = os.environ.get("LLM_API_KEY")
-        if not api_key:
-            return self._fallback.score(call)
-        # A real implementation would serialize call.turns into a prompt,
-        # call the LLM provider, and parse a structured ScoreResult back out.
-        # Left as a stub: the exercise scope excludes a live LLM dependency.
+        # A real implementation would check for LLM_API_KEY, serialize
+        # call.turns into a prompt, call the LLM provider, and parse a
+        # structured ScoreResult back out (with scored_by="llm"). Left as a
+        # stub: the exercise scope excludes a live LLM dependency. The
+        # fallback's own scored_by="rule" makes this substitution visible
+        # to callers rather than silent.
         return self._fallback.score(call)

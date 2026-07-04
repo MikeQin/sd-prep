@@ -42,6 +42,7 @@ class ScoreDB(Base):
     next_step_committed = Column(Boolean, nullable=False)
     sentiment_score = Column(Float, nullable=False)
     overall_score = Column(Float, nullable=False)
+    scored_by = Column(String, nullable=False)
     flags = Column(JSON, nullable=False)
 
     call = relationship("CallDB", back_populates="score")

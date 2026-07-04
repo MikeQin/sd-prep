@@ -32,4 +32,8 @@ class ScoreResult:
     next_step_committed: bool
     sentiment_score: float
     overall_score: float
+    # Which scorer actually produced this result ("rule" or "llm") - lets a
+    # caller detect when LLMScorer silently fell back to RuleBasedScorer
+    # instead of the substitution being invisible.
+    scored_by: str
     flags: list[str] = field(default_factory=list)
