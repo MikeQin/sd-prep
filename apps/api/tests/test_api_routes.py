@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import pytest
+from fastapi import HTTPException
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -7,7 +9,8 @@ from sqlalchemy.pool import StaticPool
 
 from app.db import Base
 from app.main import app
-from app.routes import get_db
+from app.models_db import CallDB
+from app.routes import get_call, get_db
 from app.seed import seed_database
 
 FIXTURE_DIR = Path(__file__).parent / "fixtures" / "transcripts"
@@ -62,3 +65,25 @@ def test_get_call_detail_returns_transcript_and_score():
 def test_get_call_detail_404_for_unknown_call():
     response = client.get("/api/calls/does-not-exist")
     assert response.status_code == 404
+
+
+def test_get_call_raises_clean_error_for_call_without_a_score():
+    db = TestSession()
+    db.add(
+        CallDB(
+            id="hs-no-score",
+            rep_id="rep-01",
+            customer_name="Unscored Customer",
+            vertical="home_services",
+            date="2026-01-01",
+            duration_seconds=1.0,
+            turns=[],
+        )
+    )
+    db.commit()
+
+    with pytest.raises(HTTPException) as exc_info:
+        get_call("hs-no-score", db=db)
+
+    assert exc_info.value.status_code == 500
+    db.close()

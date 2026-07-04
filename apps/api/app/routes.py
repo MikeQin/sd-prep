@@ -61,6 +61,8 @@ def get_call(call_id: str, db: Session = Depends(get_db)):
     call = db.get(CallDB, call_id, options=[joinedload(CallDB.score)])
     if call is None:
         raise HTTPException(status_code=404, detail="Call not found")
+    if call.score is None:
+        raise HTTPException(status_code=500, detail=f"Call {call_id} has no score")
     return CallDetailOut(
         id=call.id, rep_id=call.rep_id, customer_name=call.customer_name,
         vertical=call.vertical, date=call.date, duration_seconds=call.duration_seconds,
