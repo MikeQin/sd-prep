@@ -19,12 +19,20 @@ def load_transcripts(directory: Path = TRANSCRIPTS_DIR) -> list[dict]:
 def seed_database(db: Session, directory: Path = TRANSCRIPTS_DIR) -> int:
     scorer = get_scorer()
     count = 0
+    # Track rep ids we've already added in a local set rather than
+    # re-querying via db.get() on every iteration: with autoflush disabled
+    # (as app.db.SessionLocal is configured), db.get() doesn't see a rep
+    # added earlier in this same loop until the session is flushed, so two
+    # transcripts for the same not-yet-committed rep would each add a
+    # duplicate RepDB row and blow up on commit with a UNIQUE violation.
+    known_rep_ids = {rep.id for rep in db.query(RepDB).all()}
     for raw in load_transcripts(directory):
         if db.get(CallDB, raw["call_id"]) is not None:
             continue  # this call was already seeded in a previous run
 
-        if db.get(RepDB, raw["rep_id"]) is None:
+        if raw["rep_id"] not in known_rep_ids:
             db.add(RepDB(id=raw["rep_id"], name=raw["rep_name"], vertical=raw["vertical"]))
+            known_rep_ids.add(raw["rep_id"])
 
         transcript = CallTranscript(
             call_id=raw["call_id"],

@@ -18,13 +18,15 @@ FIXTURE_DIR = Path(__file__).parent / "fixtures" / "transcripts"
 
 
 def _build_test_session_factory():
+    # autoflush=False to match app.db.SessionLocal's real configuration -
+    # see the comment in tests/test_seed.py for why this matters.
     engine = create_engine(
         "sqlite:///:memory:",
         connect_args={"check_same_thread": False},
         poolclass=StaticPool,
     )
     Base.metadata.create_all(engine)
-    Session = sessionmaker(bind=engine)
+    Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
     session = Session()
     seed_database(session, directory=FIXTURE_DIR)
     session.close()

@@ -13,9 +13,13 @@ FIXTURE_DIR = Path(__file__).parent / "fixtures" / "transcripts"
 
 
 def _make_session():
+    # autoflush=False to match app.db.SessionLocal's real configuration -
+    # otherwise this test's session behaves differently from production and
+    # can mask bugs that only appear with autoflush off (see the
+    # multi-call-per-rep idempotency test below).
     engine = create_engine("sqlite:///:memory:")
     Base.metadata.create_all(engine)
-    Session = sessionmaker(bind=engine)
+    Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
     return Session()
 
 
