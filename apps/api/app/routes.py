@@ -3,7 +3,7 @@ from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session, joinedload, selectinload
 
-from app.db import SessionLocal
+from app.db import session_scope
 from app.models_db import CallDB, RepDB
 from app.schemas import CallDetailOut, CallSummaryOut, RepDetailOut, RepSummaryOut, ScoreOut
 
@@ -11,11 +11,8 @@ router = APIRouter(prefix="/api")
 
 
 def get_db():
-    db = SessionLocal()
-    try:
+    with session_scope() as db:
         yield db
-    finally:
-        db.close()
 
 
 def _to_call_summary(call: CallDB) -> CallSummaryOut:

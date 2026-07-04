@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.db import Base, SessionLocal, engine
+from app.db import Base, engine, session_scope
 from app.routes import router
 from app.seed import seed_database
 
@@ -11,11 +11,8 @@ app.include_router(router)
 @app.on_event("startup")
 def on_startup() -> None:
     Base.metadata.create_all(engine)
-    db = SessionLocal()
-    try:
+    with session_scope() as db:
         seed_database(db)
-    finally:
-        db.close()
 
 
 @app.get("/api/health")
