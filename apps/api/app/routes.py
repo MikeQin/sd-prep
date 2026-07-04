@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload, selectinload
 
 from app.db import SessionLocal
 from app.models_db import CallDB, RepDB
@@ -20,7 +20,7 @@ def get_db():
 
 @router.get("/reps", response_model=list[RepSummaryOut])
 def list_reps(db: Session = Depends(get_db)):
-    reps = db.query(RepDB).all()
+    reps = db.query(RepDB).options(selectinload(RepDB.calls).selectinload(CallDB.score)).all()
     out = []
     for rep in reps:
         scores = [c.score.overall_score for c in rep.calls if c.score]
@@ -33,7 +33,9 @@ def list_reps(db: Session = Depends(get_db)):
 
 @router.get("/reps/{rep_id}", response_model=RepDetailOut)
 def get_rep(rep_id: str, db: Session = Depends(get_db)):
-    rep = db.get(RepDB, rep_id)
+    rep = db.get(
+        RepDB, rep_id, options=[selectinload(RepDB.calls).selectinload(CallDB.score)]
+    )
     if rep is None:
         raise HTTPException(status_code=404, detail="Rep not found")
     calls = [
@@ -48,7 +50,7 @@ def get_rep(rep_id: str, db: Session = Depends(get_db)):
 
 @router.get("/calls", response_model=list[CallSummaryOut])
 def list_calls(db: Session = Depends(get_db)):
-    calls = db.query(CallDB).all()
+    calls = db.query(CallDB).options(joinedload(CallDB.score)).all()
     return [
         CallSummaryOut(
             id=c.id, rep_id=c.rep_id, customer_name=c.customer_name,
@@ -60,7 +62,7 @@ def list_calls(db: Session = Depends(get_db)):
 
 @router.get("/calls/{call_id}", response_model=CallDetailOut)
 def get_call(call_id: str, db: Session = Depends(get_db)):
-    call = db.get(CallDB, call_id)
+    call = db.get(CallDB, call_id, options=[joinedload(CallDB.score)])
     if call is None:
         raise HTTPException(status_code=404, detail="Call not found")
     return CallDetailOut(
