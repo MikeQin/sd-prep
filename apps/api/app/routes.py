@@ -18,6 +18,14 @@ def get_db():
         db.close()
 
 
+def _to_call_summary(call: CallDB) -> CallSummaryOut:
+    return CallSummaryOut(
+        id=call.id, rep_id=call.rep_id, customer_name=call.customer_name,
+        vertical=call.vertical, date=call.date,
+        overall_score=call.score.overall_score if call.score else 0.0,
+    )
+
+
 @router.get("/reps", response_model=list[RepSummaryOut])
 def list_reps(db: Session = Depends(get_db)):
     reps = db.query(RepDB).options(selectinload(RepDB.calls).selectinload(CallDB.score)).all()
@@ -38,26 +46,14 @@ def get_rep(rep_id: str, db: Session = Depends(get_db)):
     )
     if rep is None:
         raise HTTPException(status_code=404, detail="Rep not found")
-    calls = [
-        CallSummaryOut(
-            id=c.id, rep_id=c.rep_id, customer_name=c.customer_name,
-            vertical=c.vertical, date=c.date, overall_score=c.score.overall_score if c.score else 0.0,
-        )
-        for c in sorted(rep.calls, key=lambda c: c.date)
-    ]
+    calls = [_to_call_summary(c) for c in sorted(rep.calls, key=lambda c: c.date)]
     return RepDetailOut(id=rep.id, name=rep.name, vertical=rep.vertical, calls=calls)
 
 
 @router.get("/calls", response_model=list[CallSummaryOut])
 def list_calls(db: Session = Depends(get_db)):
     calls = db.query(CallDB).options(joinedload(CallDB.score)).all()
-    return [
-        CallSummaryOut(
-            id=c.id, rep_id=c.rep_id, customer_name=c.customer_name,
-            vertical=c.vertical, date=c.date, overall_score=c.score.overall_score if c.score else 0.0,
-        )
-        for c in calls
-    ]
+    return [_to_call_summary(c) for c in calls]
 
 
 @router.get("/calls/{call_id}", response_model=CallDetailOut)
