@@ -34,8 +34,7 @@ call into an objective scorecard, at scale.
 
 - Next.js/TypeScript frontend
 - FastAPI backend, SQLite storage
-- `Scorer` interface (Strategy pattern): `RuleBasedScorer` default, pluggable
-  `LLMScorer`
+- `Scorer` interface: `RuleBasedScorer` default, pluggable `LLMScorer`
 
 ---
 
