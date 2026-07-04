@@ -18,7 +18,9 @@ MAX_TALK_LISTEN_RATIO = 999.0
 NEXT_STEP_PHRASES = ["schedule", "follow up", "send over", "paperwork", "next week", "move forward"]
 # Bare "yes" was dropped: a reply like "Yes, but I need to shop around" would
 # otherwise count as a commitment even though it's a deferral.
-NEXT_STEP_COMMIT_PHRASES = ["sounds good", "let's do it", "let's move forward", "sure, send it"]
+NEXT_STEP_COMMIT_PHRASES = [
+    "sounds good", "let's do it", "let's move forward", "sure, send it", "we can look at it",
+]
 POSITIVE_WORDS = ["great", "good", "excited", "sounds good", "yes", "sure"]
 NEGATIVE_WORDS = ["expensive", "not sure", "think about it", "shop around", "we'll see"]
 

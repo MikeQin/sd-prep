@@ -121,6 +121,23 @@ def test_dismissive_understand_reply_does_not_count_as_handling_objection():
     assert "objection_not_handled" in result.flags
 
 
+def test_moderate_next_step_commitment_phrase_is_recognized():
+    call = CallTranscript(
+        call_id="hs-0008",
+        rep_id="rep-02",
+        vertical="home_services",
+        turns=[
+            _turn("rep", "Why don't I send over the paperwork and we can follow up in a few days?", 0, 4),
+            _turn("customer", "Alright, we can look at it.", 4, 6),
+        ],
+    )
+
+    result = RuleBasedScorer().score(call)
+
+    assert result.next_step_committed is True
+    assert "no_next_step_commitment" not in result.flags
+
+
 def test_non_pricing_objection_is_not_scored_as_a_pricing_objection():
     call = CallTranscript(
         call_id="hs-0007",
